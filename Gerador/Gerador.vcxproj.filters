@@ -18,6 +18,9 @@
     <ClCompile Include="gerador.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gerador_funcoes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\referencias\pok1.jpg">
@@ -26,5 +29,15 @@
     <Image Include="..\referencias\pok1_b.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="maiscartas.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gerador_funcoes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

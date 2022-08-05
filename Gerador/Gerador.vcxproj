@@ -128,10 +128,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="gerador.cpp" />
+    <ClCompile Include="gerador_funcoes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\referencias\pok1.jpg" />
     <Image Include="..\referencias\pok1_b.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="maiscartas.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gerador_funcoes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
