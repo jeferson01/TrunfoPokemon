@@ -1,8 +1,10 @@
 #include <iostream>
+#include <fstream>
 #include "gerador_funcoes.h"
 using namespace std;
 
 void ExibirMenu() {
+	cout << endl;
 	cout << "Gerador de Cartas\n"
 		<< "------------------\n"
 		<< "(C)adastrar\n"
@@ -32,5 +34,61 @@ Cartas Cadastrar() {
 	cout.width(ali); cout << left << "Agilidade : ";
 	cin >> cadastro.agilidade;
 	return cadastro;
+}
+
+void Importar(const char* nomeArq, Cartas* vet, unsigned short* tam) {
+	cout << "\nImportar Cartas"
+		 << "\n---------------"; 
+	cout << "\nArquivo: " << nomeArq << endl;
+
+	ifstream fin;
+	fin.open(nomeArq, ios::in);
+	if (!fin.is_open())
+		cout << nomeArq << " nao foi aberto!";
+
+	Cartas novaCarta;
+	char nome[12];
+	int tempInt;
+
+	cout << "\nImportando:" << endl;
+	while (fin >> nome)
+	{
+		strcpy_s(novaCarta.nome, sizeof(nome), nome);
+		fin >> tempInt;
+		novaCarta.ataque = tempInt;
+		fin >> tempInt;
+		novaCarta.defesa = tempInt;
+		fin >> tempInt;
+		novaCarta.especial = tempInt;
+		fin >> tempInt;
+		novaCarta.agilidade = tempInt;
+		
+		vet[*tam] = novaCarta;
+		(*tam)++; // tamanho do vetor +1
+		cout << novaCarta.nome << " " << novaCarta.ataque << " " << novaCarta.defesa << " "
+			 << novaCarta.especial << " " << novaCarta.agilidade << endl;
+	} 
+	fin.close();
+}
+
+void Listar(Cartas * vet, int tam) {
+	cout << "\nCartas no Baralho\n"
+		<< "-----------------\n";
+	for (int i = 0; i < tam; i++)
+	{
+		cout << "#" << i + 1 << " ";
+		cout << vet[i].nome << " "
+			<< vet[i].ataque << " "
+			<< vet[i].defesa << " "
+			<< vet[i].especial << " "
+			<< vet[i].agilidade << " " << endl;
+		//cout << vet[i].tipo << " "; // adicionar tipo depois
+	}
+
+
+/*Cartas no Baralho
+-----------------
+#1 Messi 25 418 301 21 10.5*/
+
 }
 

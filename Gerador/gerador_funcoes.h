@@ -10,3 +10,6 @@ struct Cartas
 
 void ExibirMenu();
 Cartas Cadastrar();
+
+void Importar(const char*, Cartas*, unsigned short*);
+void Listar(Cartas*, int);

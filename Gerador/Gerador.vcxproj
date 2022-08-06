@@ -138,6 +138,7 @@
     <Text Include="maiscartas.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="gerador.h" />
     <ClInclude Include="gerador_funcoes.h" />
   </ItemGroup>
   <ItemGroup>

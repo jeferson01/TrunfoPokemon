@@ -39,6 +39,9 @@
     <ClInclude Include="gerador_funcoes.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="gerador.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\baralho.dat">
