@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include "gerador_funcoes.h"
-#include "gerador.h"
 using namespace std;
 
 
