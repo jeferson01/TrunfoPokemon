@@ -13,3 +13,5 @@ Cartas Cadastrar();
 
 void Importar(const char*, Cartas*, unsigned short*);
 void Listar(Cartas*, int);
+void Alterar(Cartas*, int);
+void Excluir(Cartas*, int);

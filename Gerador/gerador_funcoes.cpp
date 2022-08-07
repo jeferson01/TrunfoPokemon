@@ -71,7 +71,7 @@ void Importar(const char* nomeArq, Cartas* vet, unsigned short* tam) {
 	fin.close();
 }
 
-void Listar(Cartas * vet, int tam) {
+void Listar(Cartas* vet, int tam) {
 	cout << "\nCartas no Baralho\n"
 		<< "-----------------\n";
 	for (int i = 0; i < tam; i++)
@@ -84,11 +84,61 @@ void Listar(Cartas * vet, int tam) {
 			<< vet[i].agilidade << " " << endl;
 		//cout << vet[i].tipo << " "; // adicionar tipo depois
 	}
-
-
-/*Cartas no Baralho
------------------
-#1 Messi 25 418 301 21 10.5*/
-
 }
+
+void Alterar(Cartas* vet, int tam) {
+	cout << "\nAtualizar Cartas"
+		 << "\n----------------\n";
+	for (int i = 0; i < tam; i++)
+		cout << i + 1 << ") " << vet[i].nome << endl; // listar vetor
+
+	int escolha;
+	cout << "Digite o numero da carta: [ ]\b\b";
+	cin >> escolha;
+	escolha--; // posicao no vetor -> -1
+	cout << "Alterando Carta " << vet[escolha].nome << ":" << endl;
+	
+	const int ali = 12;
+	cout.width(ali); cout << left << "Nome : " << vet[escolha].nome << " -> ";
+	cin >> vet[escolha].nome;
+	cout.width(ali); cout << left << "Ataque : " << vet[escolha].ataque << " -> ";
+	cin >> vet[escolha].ataque;
+	cout.width(ali); cout << left << "Defesa : " << vet[escolha].defesa << " -> ";
+	cin >> vet[escolha].defesa;
+	cout.width(ali); cout << left << "Especial : " << vet[escolha].especial << " -> ";
+	cin >> vet[escolha].especial;
+	cout.width(ali); cout << left << "Agilidade : " << vet[escolha].agilidade << " -> ";
+	cin >> vet[escolha].agilidade;
+	cout << "\nCarta numero (" << escolha + 1 << ") foi alterada." << endl;
+}
+
+void Excluir(Cartas* vet, int tam) {
+	cout << "\nExcluir Carta"
+		 << "\n-------------\n";
+	for (int i = 0; i < tam; i++)
+		cout << i + 1 << ") " << vet[i].nome << endl;
+
+	Cartas cartaTemp;
+	int escolha;
+	cout << "Digite o numero da carta: [ ]\b\b";
+	cin >> escolha;
+
+	// jogar o vetor pra tras, na posicao excluida
+	for (int i = escolha - 1; i < tam - 1; i++) // tamanho menos ultimo elem.
+	{
+		vet[i] = vet[i + 1]; // copia o prox. elemento
+	}
+	cout << "\nCarta numero (" << escolha << ") foi excluida." << endl;
+}
+
+/*
+Atualizar Cartas
+----------------
+1) Messi
+2) Ronaldo
+3) Kaká
+4) Neymar
+Digite o número da carta: [2] 
+Alterando Carta Ronaldo: 
+Nome : Ronaldo*/
 

@@ -22,30 +22,46 @@ int main() {
 	fin.read((char*) &chTemp, sizeof(cabecalho));
 	fin.read((char*) &quantCartas, sizeof(short));
 	fin.read((char*) vetBaralho, sizeof(Cartas)* quantCartas); // ler vetor
-	cout << chTemp << " " << quantCartas;
 	fin.close();
 
-	ExibirMenu();
-
-	char ch;
-	cin >> ch;
-	switch (toupper(ch)) // convert maiusculo
-	{
-	case 'C': 
-		//cout << "cadastro";
-		vetBaralho[quantCartas] = Cadastrar();
-		cout << vetBaralho[quantCartas].nome;
-		quantCartas++;
+	//quantCartas = 0; // reset debug
+	cout << chTemp << " " << quantCartas; //
 	
-		
-		break;
-	case 'I': Importar("maiscartas.txt", vetBaralho, &quantCartas); break;
+	ExibirMenu(); // exibir menu e escolher opcao
+	char ch;
+	while (cin >> ch && ch != 'S' && ch != 's')
+	{
+		switch (toupper(ch)) // convert maiusculo
+		{
+		case 'C':
+			//cout << "cadastro";
+			vetBaralho[quantCartas] = Cadastrar();
+			cout << vetBaralho[quantCartas].nome;
+			quantCartas++;
+			break;
 
-	case 'L':
-		Listar(vetBaralho, quantCartas); break;
+		case 'I':
+			Importar("maiscartas.txt", vetBaralho, &quantCartas);
+			break;
 
-	default: cout << "invalido"; break;
+		case 'L':
+			Listar(vetBaralho, quantCartas);
+			break;
+
+		case 'A':
+			Alterar(vetBaralho, quantCartas);
+			break;
+
+		case 'E':
+			Excluir(vetBaralho, quantCartas);
+			quantCartas--;
+			break;
+
+		default: cout << "invalido"; break;
+		}
+		cout << "\nEscolha uma opcao: [ ]\b\b";; // reset menu
 	}
+	cout << endl << "Saindo do gerador.." << endl;
 
 	fout.open("../baralho.dat", ios::out | ios::trunc | ios::binary);
 	//quantCartas = 0; // quantidade de cartas no vetor, definir depois..
@@ -53,7 +69,6 @@ int main() {
 	fout.write((char*)&quantCartas, sizeof(short));
 	fout.write((char*)vetBaralho, sizeof(Cartas) * quantCartas); // escrever vetor
 	fout.close();
-
 
 	return 0;
 }
