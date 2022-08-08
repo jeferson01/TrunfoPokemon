@@ -6,23 +6,26 @@
 #include "../Gerador/gerador_funcoes.cpp" // alternativa seria add gerador_funcoes.cpp ao proj Jogo.
 using namespace std;
 
-void ExibirCartasNaMao(Cartas* vetJog, int tam);
+void ExibirCartasNaMao(Cartas* vetJog[], int tam);
 
 void StarsPrint(int time = 100, char ch= '*') {
 	cout << endl;
-	for (int i = 0; i < 20; i++)
-	{
-		Sleep(time); cout << ch;
+	for (int i = 0; i < 20; i++) {
+		Sleep(time); 
+		cout << ch;
 	}
 }
 
 
-
 int main() {
+	const char* nomeJog1 = "Ash Ketchup";
+	const char* nomeJog2 = "Garybaldo";
+
 	const unsigned short comprarCartas = 4; // quantidade de cartas pra cada jogador
 	unsigned short quantCartas;
 	const char cabecalho[] = "BARALHO";
 	char chTemp[10];
+
 
 	ifstream fin;
 	fin.open("../baralho.dat", ifstream::in | ifstream::binary);
@@ -38,8 +41,9 @@ int main() {
 	fin.close();
 
 	//random_device seed; // gerador baseado em hardware
-	default_random_engine rd(12); // const 10 é a seed do gerador
-	uniform_int_distribution<int>numRd(0, quantCartas - 1); // range do numero
+	default_random_engine rd(16); // const 10 é a seed do gerador
+	uniform_int_distribution<int>numRd(0, quantCartas - 1); // range do numero d carta sorteada
+	uniform_int_distribution<int>atributoRd(1, 4); // range do atributo select
 
 	for (int i = 0; i < 100; i++)
 		cout << numRd(rd) << " ";
@@ -69,14 +73,53 @@ int main() {
 		cout << " " << cartasJogador2[i]->nome;
 	}
 
-
 	Listar(vetBaralho, quantCartas);
+	//ExibirCartasNaMao(cartasJogador1, comprarCartas);
+
+	// rounds, uma vez cada jog., exibe atributos da carta e escolhe atrib
+	bool turnoJogador1 = true;
+	for (int i = 0; i < comprarCartas; i++)
+	{
+		cout << "\n*** Round " << i + 1 << " ***\n";
+		cout << "Turno do jogador [";
+		turnoJogador1 ? (cout << nomeJog1 << "]\n") : (cout << nomeJog2 << "]\n"); // print nome do jog
+		cout << cartasJogador1[i]->nome << " X " << cartasJogador2[i]->nome << endl;
+
+
+		cout << "\n[1] Ataque\n[2] Defesa\n[3] Especial\n[4] Agilidade" << endl;
+		cout << "Escolha um atributo: [_]\b\b";
+		int num;
+		
+		if (turnoJogador1) {
+			// só entra no loop se o numero for invalido ou fora do range.
+			while (!(cin >> num) || !(num >= 1 && num <= 4))
+			{
+				cin.clear(); // clear buffer
+				cin.ignore();
+				cout << "numero invalido, digite novamente: [_]\b\b";
+			}
+		}
+		else {
+			num = atributoRd(rd);
+			Sleep(1500);
+			cout << num << endl;
+			system("pause");
+			cout << ">>Jogador 2 escolheu o atributo: [" << num << "] \n";
+			
+		}
+
+		turnoJogador1 = !turnoJogador1;
+	}
 	return 0;
 }
 
-void ExibirCartasNaMao(Cartas* vetJog, int tam) {
-
-
+// esta recebendo um vetor de ponteiros, "Cartas** vetJog" ou chamar usando "*cartasJogador1"
+void ExibirCartasNaMao(Cartas* vetJog[], int tam) {
+	cout << endl << "Exibindo cartas na mao: \n";
+	for (int i = 0; i < tam; i++)
+	{
+		cout << vetJog[i]->nome << " || ";
+	}
 }
 
 /*

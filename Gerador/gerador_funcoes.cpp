@@ -118,7 +118,6 @@ void Excluir(Cartas* vet, int tam) {
 	for (int i = 0; i < tam; i++)
 		cout << i + 1 << ") " << vet[i].nome << endl;
 
-	Cartas cartaTemp;
 	int escolha;
 	cout << "Digite o numero da carta: [ ]\b\b";
 	cin >> escolha;
