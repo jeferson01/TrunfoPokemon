@@ -29,6 +29,12 @@
     <Image Include="..\referencias\pok1_b.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\referencias\pok2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\referencias\pok2_b.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="maiscartas.txt">

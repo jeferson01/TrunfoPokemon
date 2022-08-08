@@ -133,6 +133,8 @@
   <ItemGroup>
     <Image Include="..\referencias\pok1.jpg" />
     <Image Include="..\referencias\pok1_b.jpg" />
+    <Image Include="..\referencias\pok2.jpg" />
+    <Image Include="..\referencias\pok2_b.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="maiscartas.txt" />

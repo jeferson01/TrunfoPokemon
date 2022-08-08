@@ -1,3 +1,7 @@
+Bulbassauro 14 12 18 26 grama
+Charmander 16 10 22 25 fogo
+Squirtle 11 20 15 24 agua
+
 Bulbassauro 14 12 18 26
 Charmander 16 10 22 25
 Squirtle 11 20 15 24
