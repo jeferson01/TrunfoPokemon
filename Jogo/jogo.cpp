@@ -5,6 +5,7 @@
 #include "../Gerador/gerador_funcoes.h"
 #include "../Gerador/gerador_funcoes.cpp" // alternativa seria add gerador_funcoes.cpp ao proj Jogo.
 using namespace std;
+static int PontosJogador1 = 0, PontosJogador2 = 0;
 
 void ExibirCartasNaMao(Cartas* vetJog[], int tam);
 
@@ -75,7 +76,7 @@ int main() {
 
 	Listar(vetBaralho, quantCartas);
 	//ExibirCartasNaMao(cartasJogador1, comprarCartas);
-
+	//system("cls");
 	// rounds, uma vez cada jog., exibe atributos da carta e escolhe atrib
 	bool turnoJogador1 = true;
 	for (int i = 0; i < comprarCartas; i++)
@@ -103,13 +104,48 @@ int main() {
 			num = atributoRd(rd);
 			Sleep(1500);
 			cout << num << endl;
-			system("pause");
-			cout << ">>Jogador 2 escolheu o atributo: [" << num << "] \n";
-			
+			cout << ">>Jogador " << nomeJog2 << " escolheu o atributo : [" << num << "] \n";
 		}
 
-		turnoJogador1 = !turnoJogador1;
+		int atribJogador1, atribJogador2; // var do atributo escolhido
+		switch (num)
+		{
+		case 1: atribJogador1 = cartasJogador1[i]->ataque; 
+				atribJogador2 = cartasJogador2[i]->ataque; break;
+
+		case 2: atribJogador1 = cartasJogador1[i]->defesa;
+				atribJogador2 = cartasJogador2[i]->defesa; break;
+
+		case 3: atribJogador1 = cartasJogador1[i]->especial;
+				atribJogador2 = cartasJogador2[i]->especial; break;
+
+		case 4: atribJogador1 = cartasJogador1[i]->agilidade;
+				atribJogador2 = cartasJogador2[i]->agilidade; break;
+
+		default: cout << "*ERRO ATRIBUTO SELECIONADO*\a"; break;
+		}
+
+		cout << "\n[" << nomeJog1 << "] " << cartasJogador1[i]->nome << " -> " << atribJogador1;
+		cout << "\n[" << nomeJog2 << "] " << cartasJogador2[i]->nome << " -> " << atribJogador2;
+		cout << endl << endl;
+
+		if (atribJogador1 != atribJogador2)
+			atribJogador1 > atribJogador2 ? PontosJogador1++ : PontosJogador2++; // setar pontos
+		else PontosJogador1++, PontosJogador2++; // empate
+
+		cout << "Placar: " << nomeJog1 << " " << PontosJogador1 << " x " << PontosJogador2 << " " << nomeJog2;
+		StarsPrint(50, '--'); cout << endl;
+		system("pause");
+		system("cls");
+		turnoJogador1 = !turnoJogador1; // inverter turno de escolha
 	}
+
+	if (PontosJogador1 > PontosJogador2)
+		cout << "\n*** VOCE VENCEU!! ***\n\a";
+	else if (PontosJogador1 == PontosJogador2)
+		cout << "\n*** EMPATE ***\n\a";
+	else cout << "\n*** VOCE PERDEU!! HAHA ***\n\a";
+	
 	return 0;
 }
 
