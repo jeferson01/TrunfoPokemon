@@ -2,10 +2,12 @@
 #include <fstream>
 #include <Windows.h>
 #include <random>
+#include <iomanip> // 'setw()' align columns
 #include "../Gerador/gerador_funcoes.h"
 #include "../Gerador/gerador_funcoes.cpp" // alternativa seria add gerador_funcoes.cpp ao proj Jogo.
 using namespace std;
 static int PontosJogador1 = 0, PontosJogador2 = 0;
+static int Seed = 17; // seed do gerador
 
 void ExibirCartasNaMao(Cartas* vetJog[], int tam);
 
@@ -22,7 +24,7 @@ int main() {
 	const char* nomeJog1 = "Ash Ketchup";
 	const char* nomeJog2 = "Garybaldo";
 
-	const unsigned short comprarCartas = 4; // quantidade de cartas pra cada jogador
+	const unsigned short comprarCartas = 5; // quantidade de cartas pra cada jogador
 	unsigned short quantCartas;
 	const char cabecalho[] = "BARALHO";
 	char chTemp[10];
@@ -42,7 +44,7 @@ int main() {
 	fin.close();
 
 	//random_device seed; // gerador baseado em hardware
-	default_random_engine rd(16); // const 10 é a seed do gerador
+	default_random_engine rd(Seed); // const 10 é a seed do gerador
 	uniform_int_distribution<int>numRd(0, quantCartas - 1); // range do numero d carta sorteada
 	uniform_int_distribution<int>atributoRd(1, 4); // range do atributo select
 
@@ -75,8 +77,10 @@ int main() {
 	}
 
 	Listar(vetBaralho, quantCartas);
-	//ExibirCartasNaMao(cartasJogador1, comprarCartas);
-	//system("cls");
+	ExibirCartasNaMao(cartasJogador1, comprarCartas);
+	cout << endl << endl;
+	system("pause"); system("cls");
+
 	// rounds, uma vez cada jog., exibe atributos da carta e escolhe atrib
 	bool turnoJogador1 = true;
 	for (int i = 0; i < comprarCartas; i++)
@@ -125,9 +129,12 @@ int main() {
 		default: cout << "*ERRO ATRIBUTO SELECIONADO*\a"; break;
 		}
 
-		cout << "\n[" << nomeJog1 << "] " << cartasJogador1[i]->nome << " -> " << atribJogador1;
-		cout << "\n[" << nomeJog2 << "] " << cartasJogador2[i]->nome << " -> " << atribJogador2;
+		cout.setf(ios::left);  const int col = 12; // tamanho da coluna, setw() para cada palavra
+
+		cout << "\n[" << setw(col) << nomeJog1 << "] " << setw(col) << cartasJogador1[i]->nome << " -> " << atribJogador1;
+		cout << "\n[" << setw(col) << nomeJog2 << "] " << setw(col) << cartasJogador2[i]->nome << " -> " << atribJogador2;
 		cout << endl << endl;
+		cout.unsetf(ios::left);
 
 		if (atribJogador1 != atribJogador2)
 			atribJogador1 > atribJogador2 ? PontosJogador1++ : PontosJogador2++; // setar pontos
@@ -156,6 +163,7 @@ void ExibirCartasNaMao(Cartas* vetJog[], int tam) {
 	{
 		cout << vetJog[i]->nome << " || ";
 	}
+	cout << endl;
 }
 
 /*
