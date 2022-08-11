@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <Windows.h>
 #include "gerador_funcoes.h"
 using namespace std;
 
@@ -14,6 +15,26 @@ void ExibirMenu() {
 		<< "(L)istar\n"
 		<< "(S)air\n";
 	cout << "Escolha uma opcao [ ]\b\b";
+}
+
+void ExibirDesenho(int sleepTime) {
+	const int COL = 36; // tamanho do retangulo do desenho
+	const char * desenho = "--------\xDB TRUNFO * POKEMON \xDB--------";
+	cout << "\n\xC9";
+	for (int i = 0; i < COL; i++)
+		cout << "\xCD";
+	cout << "\xBB";
+	cout << "\n\xBA";
+	for (int i = 0; i < strlen(desenho); i++)
+	{
+		Sleep(sleepTime);
+		cout << desenho[i];
+	}
+	cout << "\xBA";
+	cout << "\n\xC8";
+	for (int i = 0; i < COL; i++)
+		cout << "\xCD";
+	cout << "\xBC";
 }
 
 Cartas Cadastrar() {

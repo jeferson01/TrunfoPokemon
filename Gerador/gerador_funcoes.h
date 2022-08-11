@@ -9,6 +9,7 @@ struct Cartas
 };
 
 void ExibirMenu();
+void ExibirDesenho(int = 50);
 Cartas Cadastrar();
 
 void Importar(const char*, Cartas*, unsigned short*);

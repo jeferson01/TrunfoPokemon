@@ -29,7 +29,6 @@ int main() {
 	const char cabecalho[] = "BARALHO";
 	char chTemp[10];
 
-
 	ifstream fin;
 	fin.open("../baralho.dat", ifstream::in | ifstream::binary);
 	if (!fin.is_open())
@@ -48,12 +47,13 @@ int main() {
 	uniform_int_distribution<int>numRd(0, quantCartas - 1); // range do numero d carta sorteada
 	uniform_int_distribution<int>atributoRd(1, 4); // range do atributo select
 
-	for (int i = 0; i < 100; i++)
-		cout << numRd(rd) << " ";
+	//for (int i = 0; i < 100; i++) cout << numRd(rd) << " "; // debug numeros gerados
 
-	StarsPrint(30);
-	cout << "\nSuper Trunfo Pokemon";
-	StarsPrint(60);
+
+	// -------------------------------------------------------------------------
+	// ----------------------- Printar Desenho ---------------------------------
+	//StarsPrint(50);
+	ExibirDesenho(100); // printar desenho
 
 	cout << "\nIniciar nova partida ? [S / N] ";
 	char ch;
