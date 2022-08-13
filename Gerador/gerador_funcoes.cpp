@@ -151,6 +151,35 @@ void Excluir(Cartas* vet, int tam) {
 	cout << "\nCarta numero (" << escolha << ") foi excluida." << endl;
 }
 
+const char* CorDoTipo(int num)
+{
+	// Normal, Fogo, Agua, Grama, Eletrico, Pedra, Venenoso, Fantasma, Psiquico
+	const char* str;
+	switch (num)
+	{
+	case 0: str = "\033[48;5;8m"; break; // normal
+	case 1: str = "\033[41m"; break;
+	case 2: str = "\033[44m"; break;
+	case 3: str = "\033[42m"; break;
+	case 4: str = "\033[1;43m"; break;
+	case 5: str = "\033[48;5;94m"; break; // pedra
+	case 6: str = "\033[45m"; break;
+	case 7: str = "\033[48;5;55m"; break;
+	case 8: str = "\033[48;5;205m"; break;
+	
+	default: str = "\033[m"; break;
+	}
+	return str;
+}
+const char* TipoString(int num) {
+	const char* tipoStr[9] = { "Normal","Fogo","Agua","Grama","Eletrico","Pedra","Venenoso","Fantasma","Psiquico" };
+	if (num >= 0 && num <= 8)
+		return tipoStr[num];
+	else return "num-invalido";
+}
+
+
+
 /*
 Atualizar Cartas
 ----------------

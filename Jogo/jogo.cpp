@@ -53,7 +53,12 @@ int main() {
 	// -------------------------------------------------------------------------
 	// ----------------------- Printar Desenho ---------------------------------
 	//StarsPrint(50);
+	for (size_t i = 0; i < 10; i++)
+	{
+		cout << CorDoTipo(i) << TipoString(i);
+	}
 	ExibirDesenho(100); // printar desenho
+
 
 	cout << "\nIniciar nova partida ? [S / N] ";
 	char ch;
