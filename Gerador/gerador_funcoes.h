@@ -1,5 +1,6 @@
 #pragma once
 #define CorVermelho "\033[31m"
+#define CorAzul "\033[34m"
 
 struct Cartas
 {

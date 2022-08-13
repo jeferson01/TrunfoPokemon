@@ -21,7 +21,10 @@ void StarsPrint(int time = 100, char ch= '*') {
 
 
 int main() {
-	const char* nomeJog1 = "Ash Ketchup";
+	//SetConsoleCP(437); // default console for debug
+	//SetConsoleOutputCP(437);
+
+	const char* nomeJog1 = "Ash Kétchup";
 	const char* nomeJog2 = "Garybaldo";
 
 	const unsigned short comprarCartas = 5; // quantidade de cartas pra cada jogador
@@ -47,18 +50,20 @@ int main() {
 	uniform_int_distribution<int>numRd(0, quantCartas - 1); // range do numero d carta sorteada
 	uniform_int_distribution<int>atributoRd(1, 4); // range do atributo select
 
-	//for (int i = 0; i < 100; i++) cout << numRd(rd) << " "; // debug numeros gerados
-
 
 	// -------------------------------------------------------------------------
 	// ----------------------- Printar Desenho ---------------------------------
 	//StarsPrint(50);
-	for (size_t i = 0; i < 10; i++)
-	{
-		cout << CorDoTipo(i) << TipoString(i);
-	}
+
 	ExibirDesenho(100); // printar desenho
 
+	SetConsoleCP(1252); // exibir acentos no console
+	SetConsoleOutputCP(1252);
+	for (size_t i = 0; i < 9; i++)
+	{
+		cout << CorDoTipo(i) << " " << TipoString(i) << " " << CorDoTipo(-1) << " ";
+		Sleep(150);
+	}
 
 	cout << "\nIniciar nova partida ? [S / N] ";
 	char ch;
@@ -153,10 +158,10 @@ int main() {
 	}
 
 	if (PontosJogador1 > PontosJogador2)
-		cout << "\n*** VOCE VENCEU!! ***\n\a";
+		cout << CorAzul << "\n*** VOCE VENCEU!! ***\n\a" << "\033[m";
 	else if (PontosJogador1 == PontosJogador2)
 		cout << "\n*** EMPATE ***\n\a";
-	else cout << "\n*** VOCE PERDEU!! HAHA ***\n\a";
+	else cout << CorVermelho << "\n*** VOCE PERDEU!! HAHA ***\n\a" << "\033[m";
 	
 	return 0;
 }

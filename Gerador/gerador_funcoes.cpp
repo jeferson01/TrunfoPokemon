@@ -34,7 +34,7 @@ void ExibirDesenho(int sleepTime) {
 	cout << "\n\xC8";
 	for (int i = 0; i < COL; i++)
 		cout << "\xCD";
-	cout << "\xBC";
+	cout << "\xBC" << endl;
 }
 
 Cartas Cadastrar() {
@@ -172,7 +172,7 @@ const char* CorDoTipo(int num)
 	return str;
 }
 const char* TipoString(int num) {
-	const char* tipoStr[9] = { "Normal","Fogo","Agua","Grama","Eletrico","Pedra","Venenoso","Fantasma","Psiquico" };
+	const char* tipoStr[9] = { "Normal","Fogo","Agua","Grama","Elétrico","Pedra","Venenoso","Fantasma","Psíquico" };
 	if (num >= 0 && num <= 8)
 		return tipoStr[num];
 	else return "num-invalido";
