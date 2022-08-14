@@ -171,23 +171,58 @@ const char* CorDoTipo(int num)
 	}
 	return str;
 }
+
 const char* TipoString(int num) {
 	const char* tipoStr[9] = { "Normal","Fogo","Agua","Grama","Elétrico","Pedra","Venenoso","Fantasma","Psíquico" };
 	if (num >= 0 && num <= 8)
 		return tipoStr[num];
 	else return "num-invalido";
 }
+int TipoString(const char* tipo) {
+	const char* tipoStr[9] = { "Normal","Fogo","Agua","Grama","Elétrico","Pedra","Venenoso","Fantasma","Psíquico" };
+	for (int i = 0; i < 9; i++)
+	{
+		if (!strcmp(tipo, tipoStr[i])) // igual retorna 0
+			return i ; // retorna o numero do tipo (0-8)
+	}
+	return -1;
+}
 
+// retorna vetor [3] de numeros das vantagem do tipo
+int* VantagemDoTipo(const char* tipoStr)
+{
+	// Normal, Fogo, Agua, Grama, Eletrico, Pedra, Venenoso, Fantasma, Psiquico
+	enum TiposEnum { Normal, Fogo, Agua, Grama, Eletrico, Pedra, Venenoso, Fantasma, Psiquico };
 
+	int num = TipoString(tipoStr);
 
-/*
-Atualizar Cartas
-----------------
-1) Messi
-2) Ronaldo
-3) Kaká
-4) Neymar
-Digite o número da carta: [2] 
-Alterando Carta Ronaldo: 
-Nome : Ronaldo*/
+	//int vantagens[3] = { {NULL},{NULL},{NULL} };
+	int vantagens[3] = { 0 };
+	return vantagens;
+
+	switch (num)
+	{
+	case 0: vantagens[0] = { }; break; // normal
+
+	case 1: vantagens[0] = Grama; break; // fogo
+
+	case 2: vantagens[0] = Fogo; vantagens[1] = Pedra; break; // agua
+
+	case 3: vantagens[0] = Agua; vantagens[1] = Eletrico; vantagens[2] = Pedra; break; // grama
+
+	case 4: vantagens[0] = Agua; break; // eletrico
+
+	case 5: vantagens[0] = Normal; vantagens[1] = Fogo; vantagens[2] = Eletrico; break; // pedra
+
+	case 6: vantagens[0] = Grama; break; // venen
+
+	case 7: vantagens[0] = Normal; vantagens[1] = Psiquico; break; // fantasma
+
+	case 8: vantagens[0] = Venenoso; break; // psiquico
+
+	default: break;
+	}
+	return vantagens;
+}
+
 

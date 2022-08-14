@@ -55,10 +55,21 @@ int main() {
 	// ----------------------- Printar Desenho ---------------------------------
 	//StarsPrint(50);
 
-	ExibirDesenho(100); // printar desenho
+	//ExibirDesenho(100); // printar desenho
 
 	SetConsoleCP(1252); // exibir acentos no console
 	SetConsoleOutputCP(1252);
+	cout << VantagemDoTipo("Elétrico")[0] << " ";
+
+	if (VantagemDoTipo("Pedra")[1] == 1) {
+		cout << endl << "nulo." << endl;
+	}
+
+
+	for (size_t i = 0; i < 12; i++)
+	{
+		cout << TipoString(i) << " -> " << TipoString(TipoString(i)) << endl;
+	}
 	for (size_t i = 0; i < 9; i++)
 	{
 		cout << CorDoTipo(i) << " " << TipoString(i) << " " << CorDoTipo(-1) << " ";
@@ -98,8 +109,12 @@ int main() {
 		cout << "\n*** Round " << i + 1 << " ***\n";
 		cout << "Turno do jogador [";
 		turnoJogador1 ? (cout << nomeJog1 << "]\n") : (cout << nomeJog2 << "]\n"); // print nome do jog
-		cout << cartasJogador1[i]->nome << " X " << cartasJogador2[i]->nome << endl;
+		
+		// *adicionar cor do tipo*
+		cout << "normal " << TipoString("Normal") << "eletrico " << TipoString("Elétrico") << endl;
 
+		cout << endl << cartasJogador1[i]->nome << " X " << cartasJogador2[i]->nome << endl;
+		
 
 		cout << "\n[1] Ataque\n[2] Defesa\n[3] Especial\n[4] Agilidade" << endl;
 		cout << "Escolha um atributo: [_]\b\b";

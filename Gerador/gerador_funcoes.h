@@ -11,6 +11,7 @@ struct Cartas
 	char tipo[12]; // a definir
 };
 
+
 void ExibirMenu();
 void ExibirDesenho(int = 50);
 Cartas Cadastrar();
@@ -22,3 +23,5 @@ void Excluir(Cartas*, int);
 
 const char* CorDoTipo(int);
 const char* TipoString(int);
+int TipoString(const char* );
+int* VantagemDoTipo(const char* tipoStr);
