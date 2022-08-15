@@ -4,6 +4,8 @@
 #include "gerador_funcoes.h"
 using namespace std;
 
+static const char* TIPOSTR[9] = { "Normal","Fogo","Água","Grama","Elétrico","Pedra","Venenoso","Fantasma","Psíquico" };
+
 void ExibirMenu() {
 	cout << endl;
 	cout << "Gerador de Cartas\n"
@@ -172,37 +174,33 @@ const char* CorDoTipo(int num)
 	return str;
 }
 
-const char* TipoString(int num) {
-	const char* tipoStr[9] = { "Normal","Fogo","Agua","Grama","Elétrico","Pedra","Venenoso","Fantasma","Psíquico" };
+const char* TipoString(const int num) {
 	if (num >= 0 && num <= 8)
-		return tipoStr[num];
+		return TIPOSTR[num];
 	else return "num-invalido";
 }
 int TipoString(const char* tipo) {
-	const char* tipoStr[9] = { "Normal","Fogo","Agua","Grama","Elétrico","Pedra","Venenoso","Fantasma","Psíquico" };
 	for (int i = 0; i < 9; i++)
 	{
-		if (!strcmp(tipo, tipoStr[i])) // igual retorna 0
+		if (!strcmp(tipo, TIPOSTR[i])) // igual retorna 0
 			return i ; // retorna o numero do tipo (0-8)
 	}
 	return -1;
 }
 
-// retorna vetor [3] de numeros das vantagem do tipo
+// retorna vetor [3] de numeros das vantagem do tipo.
+// chama a funcao TipoString recebendo o numero do tipo.
 int* VantagemDoTipo(const char* tipoStr)
 {
-	// Normal, Fogo, Agua, Grama, Eletrico, Pedra, Venenoso, Fantasma, Psiquico
 	enum TiposEnum { Normal, Fogo, Agua, Grama, Eletrico, Pedra, Venenoso, Fantasma, Psiquico };
 
 	int num = TipoString(tipoStr);
 
-	//int vantagens[3] = { {NULL},{NULL},{NULL} };
-	int vantagens[3] = { 0 };
-	return vantagens;
+	int vantagens[3] = { -1, -1, -1 };
 
 	switch (num)
 	{
-	case 0: vantagens[0] = { }; break; // normal
+	case 0: vantagens[0] = {-1}; break; // normal
 
 	case 1: vantagens[0] = Grama; break; // fogo
 
@@ -225,4 +223,12 @@ int* VantagemDoTipo(const char* tipoStr)
 	return vantagens;
 }
 
-
+// recebe um vetor int dos tipos de vantagem, e o int do tipo para comparar
+bool CompararVantagemTipo(const int* vetTipo, const int tipo) {
+	bool vantagem = 0;
+	for (int i = 0; i < 3 && vetTipo[i] >= 0; i++) // cancela loop no 'tipo' -1
+	{
+		vetTipo[i] == tipo ? vantagem++ : NULL;
+	}
+	return vantagem;
+}

@@ -59,11 +59,18 @@ int main() {
 
 	SetConsoleCP(1252); // exibir acentos no console
 	SetConsoleOutputCP(1252);
-	cout << VantagemDoTipo("Elétrico")[0] << " ";
-
-	if (VantagemDoTipo("Pedra")[1] == 1) {
-		cout << endl << "nulo." << endl;
+	cout << TipoString("Elétrico") << endl;
+	cout << VantagemDoTipo("Elétrico")[0] << " " << endl;
+	
+	for (int i = 0; i < 10; i++)
+	{
+		const char* tipo = TipoString(i);
+		cout << endl << i << ": ";
+		cout << VantagemDoTipo(tipo)[0] << " ";
+		cout << VantagemDoTipo(tipo)[1] << " ";
+		cout << "vantagem: " << CompararVantagemTipo(VantagemDoTipo(tipo), 2);
 	}
+
 
 
 	for (size_t i = 0; i < 12; i++)
