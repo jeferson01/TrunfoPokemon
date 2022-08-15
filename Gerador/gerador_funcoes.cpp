@@ -95,6 +95,7 @@ void Importar(Cartas* vet, unsigned short* tam, const char* nomeArq) {
 		fin >> tempInt;
 		novaCarta.agilidade = tempInt;
 		fin >> tempTipo;
+
 		strcpy_s(novaCarta.tipo, sizeof(tempTipo), tempTipo);
 		
 		vet[*tam] = novaCarta;

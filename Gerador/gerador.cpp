@@ -2,7 +2,10 @@
 #include <fstream>
 #include <Windows.h>
 #include "gerador_funcoes.h"
-using namespace std;
+//using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
 
 
 int main() {
@@ -10,15 +13,15 @@ int main() {
 	SetConsoleOutputCP(1252);
 	cout << "Elétricú";
 
-	ifstream fin;
-	ofstream fout;
+	std::ifstream fin;
+	std::ofstream fout;
 	
 	const char cabecalho[] = "BARALHO";
 	unsigned short quantCartas = 0; // quantidade de cartas no vetor..
 	Cartas vetBaralho[32];
 	
 
-	fin.open("../baralho.dat", ifstream::in | ifstream::binary);
+	fin.open("../baralho.dat", std::ifstream::in | std::ifstream::binary);
 	if (!fin.is_open())
 		cout << "arquivo nao foi aberto.\n";
 	else {
@@ -69,7 +72,7 @@ int main() {
 	}
 	cout << endl << "Saindo do gerador.." << endl;
 
-	fout.open("../baralho.dat", ios::out | ios::trunc | ios::binary);
+	fout.open("../baralho.dat", std::ios::out | std::ios::trunc | std::ios::binary);
 	//quantCartas = 0; // quantidade de cartas no vetor, definir depois..
 	fout.write((char*) &cabecalho, sizeof(cabecalho));
 	fout.write((char*)&quantCartas, sizeof(short));
