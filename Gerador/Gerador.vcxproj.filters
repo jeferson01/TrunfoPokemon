@@ -40,6 +40,9 @@
     <Text Include="maiscartas.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="maiscartas_tipos.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gerador_funcoes.h">

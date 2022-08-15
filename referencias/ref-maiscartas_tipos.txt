@@ -1,0 +1,15 @@
+// Ataque Defesa Especial Agilidade
+// Normal  Fogo Água Grama Elétrico Pedra Venenoso Fantasma Psíquico
+Bulbassauro 14 12 18 26 Grama
+Charmander 16 10 22 25 Fogo
+Squirtle 11 20 15 24 Água
+Metapod 8 34 10 4 Grama
+Butterfree 10 12 25 20 Venenoso
+Beedrill 28 9 12 22 Venenoso 
+Ekans 16 13 15 20 Venenoso
+Pikachu 14 14 26 25 Elétrico
+Meowth 20 12 8 14 Normal
+Psyduck 11 12 28 10 Água
+Abra 6 6 32 18 Psíquico
+Geodude 14 25 10 14 Pedra
+Gastly 10 14 26 26 Fantasma

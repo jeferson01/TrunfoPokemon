@@ -15,7 +15,7 @@ void ExibirMenu();
 void ExibirDesenho(int = 50);
 Cartas Cadastrar();
 
-void Importar(const char*, Cartas*, unsigned short*);
+void Importar(Cartas*, unsigned short*, const char* nome = "maiscartas.txt");
 void Listar(Cartas*, int);
 void Alterar(Cartas*, int);
 void Excluir(Cartas*, int);

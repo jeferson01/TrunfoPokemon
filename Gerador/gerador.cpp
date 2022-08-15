@@ -1,31 +1,37 @@
 #include <iostream>
 #include <fstream>
+#include <Windows.h>
 #include "gerador_funcoes.h"
 using namespace std;
 
 
 int main() {
+	SetConsoleCP(1252); // exibir acentos no console
+	SetConsoleOutputCP(1252);
+	cout << "Elétricú";
+
 	ifstream fin;
 	ofstream fout;
 	
+	const char cabecalho[] = "BARALHO";
+	unsigned short quantCartas = 0; // quantidade de cartas no vetor..
 	Cartas vetBaralho[32];
-	unsigned short quantCartas; // quantidade de cartas no vetor..
+	
 
 	fin.open("../baralho.dat", ifstream::in | ifstream::binary);
 	if (!fin.is_open())
 		cout << "arquivo nao foi aberto.\n";
+	else {
+		char chTemp[10];
 
-	const char cabecalho[] = "BARALHO";
-	char chTemp[10];
+		// leitura do cabeçalho
+		fin.read((char*)&chTemp, sizeof(cabecalho));
+		fin.read((char*)&quantCartas, sizeof(short));
+		fin.read((char*)vetBaralho, sizeof(Cartas) * quantCartas); // ler vetor
+		fin.close();
 
-	// leitura do cabeçalho
-	fin.read((char*) &chTemp, sizeof(cabecalho));
-	fin.read((char*) &quantCartas, sizeof(short));
-	fin.read((char*) vetBaralho, sizeof(Cartas)* quantCartas); // ler vetor
-	fin.close();
-
-	//quantCartas = 0; // reset debug
-	cout << chTemp << " " << quantCartas; //
+		cout << chTemp << " " << quantCartas; // debug
+	}
 	
 	ExibirMenu(); // exibir menu e escolher opcao
 	char ch;
@@ -41,7 +47,7 @@ int main() {
 			break;
 
 		case 'I':
-			Importar("maiscartas.txt", vetBaralho, &quantCartas);
+			Importar(vetBaralho, &quantCartas, "maiscartas_tipos.txt");
 			break;
 
 		case 'L':

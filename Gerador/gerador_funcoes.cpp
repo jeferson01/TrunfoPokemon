@@ -56,21 +56,30 @@ Cartas Cadastrar() {
 	cin >> cadastro.especial;
 	cout.width(ali); cout << left << "Agilidade : ";
 	cin >> cadastro.agilidade;
+
+	cout.width(ali); cout << left << "Tipo : ";
+	cin >> cadastro.tipo;
 	return cadastro;
 }
 
-void Importar(const char* nomeArq, Cartas* vet, unsigned short* tam) {
+void Importar(Cartas* vet, unsigned short* tam, const char* nomeArq) {
+	SetConsoleCP(1252); // exibir acentos no console
+	SetConsoleOutputCP(1252);
+
 	cout << "\nImportar Cartas"
 		 << "\n---------------"; 
 	cout << "\nArquivo: " << nomeArq << endl;
 
 	ifstream fin;
 	fin.open(nomeArq, ios::in);
-	if (!fin.is_open())
+	if (!fin.is_open()) {
 		cout << nomeArq << " nao foi aberto!";
-
+		std::exit(EXIT_FAILURE);
+	}
+	
 	Cartas novaCarta;
 	char nome[12];
+	char tempTipo[12];
 	int tempInt;
 
 	cout << "\nImportando:" << endl;
@@ -85,11 +94,13 @@ void Importar(const char* nomeArq, Cartas* vet, unsigned short* tam) {
 		novaCarta.especial = tempInt;
 		fin >> tempInt;
 		novaCarta.agilidade = tempInt;
+		fin >> tempTipo;
+		strcpy_s(novaCarta.tipo, sizeof(tempTipo), tempTipo);
 		
 		vet[*tam] = novaCarta;
 		(*tam)++; // tamanho do vetor +1
 		cout << novaCarta.nome << " " << novaCarta.ataque << " " << novaCarta.defesa << " "
-			 << novaCarta.especial << " " << novaCarta.agilidade << endl;
+			 << novaCarta.especial << " " << novaCarta.agilidade << " " << novaCarta.tipo << endl;
 	} 
 	fin.close();
 }
@@ -104,8 +115,8 @@ void Listar(Cartas* vet, int tam) {
 			<< vet[i].ataque << " "
 			<< vet[i].defesa << " "
 			<< vet[i].especial << " "
-			<< vet[i].agilidade << " " << endl;
-		//cout << vet[i].tipo << " "; // adicionar tipo depois
+			<< vet[i].agilidade << " "
+			<< vet[i].tipo << " " << endl;
 	}
 }
 
@@ -200,7 +211,7 @@ int* VantagemDoTipo(const char* tipoStr)
 
 	switch (num)
 	{
-	case 0: vantagens[0] = {-1}; break; // normal
+	case 0: NULL; break; // normal
 
 	case 1: vantagens[0] = Grama; break; // fogo
 

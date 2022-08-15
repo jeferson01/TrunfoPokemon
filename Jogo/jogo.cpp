@@ -34,8 +34,11 @@ int main() {
 
 	ifstream fin;
 	fin.open("../baralho.dat", ifstream::in | ifstream::binary);
-	if (!fin.is_open())
+	if (!fin.is_open()) {
 		cout << "arquivo nao foi aberto.\n";
+		std::exit(EXIT_FAILURE);
+	}
+		
 
 	// leitura do cabeçalho
 	fin.read((char*)&chTemp, sizeof(cabecalho));
@@ -54,13 +57,10 @@ int main() {
 	// -------------------------------------------------------------------------
 	// ----------------------- Printar Desenho ---------------------------------
 	//StarsPrint(50);
-
 	//ExibirDesenho(100); // printar desenho
 
 	SetConsoleCP(1252); // exibir acentos no console
 	SetConsoleOutputCP(1252);
-	cout << TipoString("Elétrico") << endl;
-	cout << VantagemDoTipo("Elétrico")[0] << " " << endl;
 	
 	for (int i = 0; i < 10; i++)
 	{
