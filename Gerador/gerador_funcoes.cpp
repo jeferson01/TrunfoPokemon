@@ -63,8 +63,6 @@ Cartas Cadastrar() {
 }
 
 void Importar(Cartas* vet, unsigned short* tam, const char* nomeArq) {
-	SetConsoleCP(1252); // exibir acentos no console
-	SetConsoleOutputCP(1252);
 
 	cout << "\nImportar Cartas"
 		 << "\n---------------"; 

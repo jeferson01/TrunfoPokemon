@@ -137,7 +137,6 @@
     <Image Include="..\referencias\pok2_b.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="maiscartas.txt" />
     <Text Include="maiscartas_tipos.txt" />
   </ItemGroup>
   <ItemGroup>
