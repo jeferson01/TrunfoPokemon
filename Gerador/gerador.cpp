@@ -11,7 +11,6 @@ using std::endl;
 int main() {
 	SetConsoleCP(1252); // exibir acentos no console
 	SetConsoleOutputCP(1252);
-	cout << "Elétricú";
 
 	std::ifstream fin;
 	std::ofstream fout;

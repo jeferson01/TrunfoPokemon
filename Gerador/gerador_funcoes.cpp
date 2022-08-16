@@ -99,7 +99,9 @@ void Importar(Cartas* vet, unsigned short* tam, const char* nomeArq) {
 		vet[*tam] = novaCarta;
 		(*tam)++; // tamanho do vetor +1
 		cout << novaCarta.nome << " " << novaCarta.ataque << " " << novaCarta.defesa << " "
-			 << novaCarta.especial << " " << novaCarta.agilidade << " " << novaCarta.tipo << endl;
+			 << novaCarta.especial << " " << novaCarta.agilidade << " " << novaCarta.tipo;
+		int numTipo = TipoString(novaCarta.tipo);
+		cout << " " << CorDoTipo(numTipo) << "   " << CorDoTipo(-1) << endl;
 	} 
 	fin.close();
 }
@@ -114,8 +116,11 @@ void Listar(Cartas* vet, int tam) {
 			<< vet[i].ataque << " "
 			<< vet[i].defesa << " "
 			<< vet[i].especial << " "
-			<< vet[i].agilidade << " "
-			<< vet[i].tipo << " " << endl;
+			<< vet[i].agilidade << " ";
+
+		int numTipo = TipoString(vet[i].tipo);
+		cout << CorDoTipo(numTipo) << " " << TipoString(numTipo) << " " << CorDoTipo(-1) << " " << endl;
+		//cout << vet[i].tipo << " " << endl;
 	}
 }
 

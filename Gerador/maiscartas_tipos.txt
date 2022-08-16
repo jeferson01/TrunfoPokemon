@@ -11,3 +11,4 @@ Psyduck 11 12 28 10 Água
 Abra 6 6 32 18 Psíquico
 Geodude 14 25 10 14 Pedra
 Gastly 10 14 26 26 Fantasma
+Eevee 21 16 14 22 Normal
