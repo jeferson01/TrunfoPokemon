@@ -17,7 +17,8 @@ int main() {
 	
 	const char cabecalho[] = "BARALHO";
 	unsigned short quantCartas = 0; // quantidade de cartas no vetor..
-	Cartas vetBaralho[32];
+	const unsigned short TAM_BARALHO = 32;
+	Cartas vetBaralho[TAM_BARALHO];
 	
 
 	fin.open("../baralho.dat", std::ifstream::in | std::ifstream::binary);
@@ -49,7 +50,7 @@ int main() {
 			break;
 
 		case 'I':
-			Importar(vetBaralho, &quantCartas, "maiscartas_tipos.txt");
+			Importar(vetBaralho, &quantCartas);
 			break;
 
 		case 'L':
@@ -71,8 +72,10 @@ int main() {
 	}
 	cout << endl << "Saindo do gerador.." << endl;
 
-	fout.open("../baralho.dat", std::ios::out | std::ios::trunc | std::ios::binary);
 	//quantCartas = 0; // quantidade de cartas no vetor, definir depois..
+	if (quantCartas > TAM_BARALHO)
+		quantCartas = TAM_BARALHO;
+	fout.open("../baralho.dat", std::ios::out | std::ios::trunc | std::ios::binary);
 	fout.write((char*) &cabecalho, sizeof(cabecalho));
 	fout.write((char*)&quantCartas, sizeof(short));
 	fout.write((char*)vetBaralho, sizeof(Cartas) * quantCartas); // escrever vetor

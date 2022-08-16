@@ -137,7 +137,8 @@
     <Image Include="..\referencias\pok2_b.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="maiscartas_tipos.txt" />
+    <Text Include="maiscartas.txt" />
+    <Text Include="maiscartas_ev.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gerador_funcoes.h" />

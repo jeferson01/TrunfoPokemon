@@ -67,6 +67,19 @@ void Importar(Cartas* vet, unsigned short* tam, const char* nomeArq) {
 	cout << "\nImportar Cartas"
 		 << "\n---------------"; 
 	cout << "\nArquivo: " << nomeArq << endl;
+	
+	cout << "\nAlterar nome do arquivo? [S / N] ";
+	char ch;
+	cin.ignore(); // consumir \n do buffer
+	cin.get(ch);
+	cin.ignore(100, '\n');
+	
+	if (ch == 's' || ch == 'S') {
+		cout << "Digite o novo nome do arquivo: ";
+		char novoNome[30];
+		cin >> novoNome;
+		nomeArq = novoNome;
+	}
 
 	ifstream fin;
 	fin.open(nomeArq, ios::in);
