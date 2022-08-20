@@ -8,6 +8,7 @@
 using namespace std;
 static int PontosJogador1 = 0, PontosJogador2 = 0;
 static int Seed = 17; // seed do gerador
+static const char* CorDef = CorDoTipo(-1);
 
 void ExibirCartasNaMao(Cartas* vetJog[], int tam);
 
@@ -68,7 +69,7 @@ int main() {
 		cout << endl << i << ": ";
 		cout << VantagemDoTipo(tipo)[0] << " ";
 		cout << VantagemDoTipo(tipo)[1] << " ";
-		cout << "vantagem: " << CompararVantagemTipo(VantagemDoTipo(tipo), 2);
+		cout << "vantagem: " << CompararVantagemTipo(VantagemDoTipo(tipo), 3);
 	}
 
 
@@ -116,10 +117,13 @@ int main() {
 		cout << "Turno do jogador [";
 		turnoJogador1 ? (cout << nomeJog1 << "]\n") : (cout << nomeJog2 << "]\n"); // print nome do jog
 		
-		// *adicionar cor do tipo*
-		cout << "normal " << TipoString("Normal") << "eletrico " << TipoString("Elétrico") << endl;
+		// *adiciona cor do tipo do pokemon*
+		int tipoPok1 = TipoString(cartasJogador1[i]->tipo);
+		int tipoPok2 = TipoString(cartasJogador2[i]->tipo);
 
-		cout << endl << cartasJogador1[i]->nome << " X " << cartasJogador2[i]->nome << endl;
+		cout << endl << "\t";
+		cout << CorDoTipo(tipoPok1) << "  " << CorDef << " " << cartasJogador1[i]->nome << " X "
+			 << cartasJogador2[i]->nome << " " << CorDoTipo(tipoPok2) << "  " << CorDef << endl;
 		
 
 		cout << "\n[1] Ataque\n[2] Defesa\n[3] Especial\n[4] Agilidade" << endl;
