@@ -25,8 +25,11 @@ int main() {
 	//SetConsoleCP(437); // default console for debug
 	//SetConsoleOutputCP(437);
 
-	const char* nomeJog1 = "Ash Kétchup";
-	const char* nomeJog2 = "Garybaldo";
+	const char* nomeJog1 = "Ash K.";
+	const char* nomeJog2 = "Gary";
+	unsigned short tamNome; // tamanho do maior nome, usado para colunas setw()
+	strlen(nomeJog1) > strlen(nomeJog2) ? tamNome = strlen(nomeJog1) : tamNome = strlen(nomeJog2);
+	
 
 	const unsigned short comprarCartas = 5; // quantidade de cartas pra cada jogador
 	unsigned short quantCartas;
@@ -118,7 +121,7 @@ int main() {
 		turnoJogador1 ? (cout << nomeJog1 << "]\n") : (cout << nomeJog2 << "]\n"); // print nome do jog
 		
 		// *adiciona cor do tipo do pokemon*
-		int tipoPok1 = TipoString(cartasJogador1[i]->tipo);
+		int tipoPok1 = TipoString(cartasJogador1[i]->tipo); // set o numero do tipo
 		int tipoPok2 = TipoString(cartasJogador2[i]->tipo);
 
 		cout << endl << "\t";
@@ -166,8 +169,11 @@ int main() {
 
 		cout.setf(ios::left);  const int col = 12; // tamanho da coluna, setw() para cada palavra
 
-		cout << "\n[" << setw(col) << nomeJog1 << "] " << setw(col) << cartasJogador1[i]->nome << " -> " << atribJogador1;
-		cout << "\n[" << setw(col) << nomeJog2 << "] " << setw(col) << cartasJogador2[i]->nome << " -> " << atribJogador2;
+		cout << "\n[" << setw(tamNome) << nomeJog1 << "] " << setw(col) << cartasJogador1[i]->nome << " -> " << atribJogador1;
+		cout << " " << CorDoTipo(tipoPok1) << "  " << CorDef;
+		cout << "\n[" << setw(tamNome) << nomeJog2 << "] " << setw(col) << cartasJogador2[i]->nome << " -> " << atribJogador2;
+		cout << " " << CorDoTipo(tipoPok2) << "  " << CorDef;
+
 		cout << endl << endl;
 		cout.unsetf(ios::left);
 
