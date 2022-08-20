@@ -7,7 +7,7 @@
 #include "../Gerador/gerador_funcoes.cpp" // alternativa seria add gerador_funcoes.cpp ao proj Jogo.
 using namespace std;
 static int PontosJogador1 = 0, PontosJogador2 = 0;
-static int Seed = 17; // seed do gerador
+static int Seed = 19; // seed do gerador
 static const char* CorDef = CorDoTipo(-1);
 
 void ExibirCartasNaMao(Cartas* vetJog[], int tam);
@@ -31,7 +31,7 @@ int main() {
 	strlen(nomeJog1) > strlen(nomeJog2) ? tamNome = strlen(nomeJog1) : tamNome = strlen(nomeJog2);
 	
 
-	const unsigned short comprarCartas = 5; // quantidade de cartas pra cada jogador
+	const unsigned short comprarCartas = 7; // quantidade de cartas pra cada jogador
 	unsigned short quantCartas;
 	const char cabecalho[] = "BARALHO";
 	char chTemp[10];
@@ -123,6 +123,11 @@ int main() {
 		// *adiciona cor do tipo do pokemon*
 		int tipoPok1 = TipoString(cartasJogador1[i]->tipo); // set o numero do tipo
 		int tipoPok2 = TipoString(cartasJogador2[i]->tipo);
+		
+		bool vantagemPok1 = CompararVantagemTipo(VantagemDoTipo(cartasJogador1[i]->tipo), tipoPok2);
+		bool vantagemPok2 = CompararVantagemTipo(VantagemDoTipo(cartasJogador2[i]->tipo), tipoPok1);
+		cout.setf(ios::boolalpha);
+		cout << "\n vantagem do pok1: " << vantagemPok1 << " , pok2: " << vantagemPok2 << endl;
 
 		cout << endl << "\t";
 		cout << CorDoTipo(tipoPok1) << "  " << CorDef << " " << cartasJogador1[i]->nome << " X "
@@ -169,6 +174,7 @@ int main() {
 
 		cout.setf(ios::left);  const int col = 12; // tamanho da coluna, setw() para cada palavra
 
+		// ** definir vantagem +30% bonus no atributo.... **
 		cout << "\n[" << setw(tamNome) << nomeJog1 << "] " << setw(col) << cartasJogador1[i]->nome << " -> " << atribJogador1;
 		cout << " " << CorDoTipo(tipoPok1) << "  " << CorDef;
 		cout << "\n[" << setw(tamNome) << nomeJog2 << "] " << setw(col) << cartasJogador2[i]->nome << " -> " << atribJogador2;

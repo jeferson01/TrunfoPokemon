@@ -216,7 +216,7 @@ int TipoString(const char* tipo) {
 	return -1;
 }
 
-// retorna vetor [3] de numeros das vantagem do tipo.
+// retorna vetor [3] de numeros das vantagem do tipo. -1 se não houver vant.
 // chama a funcao TipoString recebendo o numero do tipo.
 int* VantagemDoTipo(const char* tipoStr)
 {
@@ -228,23 +228,23 @@ int* VantagemDoTipo(const char* tipoStr)
 
 	switch (num)
 	{
-	case 0: NULL; break; // normal
+	case Normal: NULL; break; // normal
 
-	case 1: vantagens[0] = Grama; break; // fogo
+	case Fogo: vantagens[0] = Grama; vantagens[1] = Venenoso; break; // fogo
 
-	case 2: vantagens[0] = Fogo; vantagens[1] = Pedra; break; // agua
+	case Agua: vantagens[0] = Fogo; vantagens[1] = Pedra; break; // agua
 
-	case 3: vantagens[0] = Agua; vantagens[1] = Eletrico; vantagens[2] = Pedra; break; // grama
+	case Grama: vantagens[0] = Agua; vantagens[1] = Eletrico; vantagens[2] = Pedra; break; // grama
 
-	case 4: vantagens[0] = Agua; break; // eletrico
+	case Eletrico: vantagens[0] = Agua; break; // eletrico
 
-	case 5: vantagens[0] = Normal; vantagens[1] = Fogo; vantagens[2] = Eletrico; break; // pedra
+	case Pedra: vantagens[0] = Normal; vantagens[1] = Fogo; vantagens[2] = Eletrico; break; // pedra
 
-	case 6: vantagens[0] = Grama; break; // venen
+	case Venenoso: vantagens[0] = Grama; break; // venen
 
-	case 7: vantagens[0] = Normal; vantagens[1] = Psiquico; break; // fantasma
+	case Fantasma: vantagens[0] = Normal; vantagens[1] = Psiquico; break; // fantasma
 
-	case 8: vantagens[0] = Venenoso; break; // psiquico
+	case Psiquico: vantagens[0] = Venenoso; break; // psiquico
 
 	default: break;
 	}
