@@ -61,26 +61,13 @@ int main() {
 
 	// -------------------------------------------------------------------------
 	// ----------------------- Printar Desenho ---------------------------------
-	//StarsPrint(50);
-	//ExibirDesenho(100); // printar desenho
+	ExibirDesenho(40); cout << endl;// printar desenho
 
 	SetConsoleCP(1252); // exibir acentos no console
 	SetConsoleOutputCP(1252);
-	
-	for (int i = 0; i < 10; i++)
-	{
-		const char* tipo = TipoString(i);
-		cout << endl << i << ": ";
-		cout << VantagemDoTipo(tipo)[0] << " ";
-		cout << VantagemDoTipo(tipo)[1] << " ";
-		cout << "vantagem: " << CompararVantagemTipo(VantagemDoTipo(tipo), 3);
-	}
 
 
-	for (int i = 0; i < 12; i++)
-	{
-		cout << TipoString(i) << " -> " << TipoString(TipoString(i)) << endl;
-	}
+	// -------------- Exibir tipos/cores --------------
 	for (int i = 0; i < 9; i++)
 	{
 		cout << CorDoTipo(i) << " " << TipoString(i) << " " << CorDoTipo(-1) << " ";
@@ -99,16 +86,12 @@ int main() {
 	{
 		cartaRand = numRd(rd);
 		cartasJogador1[i] = &vetBaralho[cartaRand]; // endereço apontando p/ carta no vetor baralho
-		cout << endl << cartaRand;
-		cout << " " << cartasJogador1[i]->nome;
 		
 		cartaRand = numRd(rd);
 		cartasJogador2[i] = &vetBaralho[cartaRand];
-		cout << endl << cartaRand;
-		cout << " " << cartasJogador2[i]->nome;
 	}
 
-	Listar(vetBaralho, quantCartas);
+	//Listar(vetBaralho, quantCartas);
 	ExibirCartasNaMao(cartasJogador1, comprarCartas);
 	cout << endl << endl;
 	system("pause"); system("cls");
@@ -220,9 +203,3 @@ void ExibirCartasNaMao(Cartas* vetJog[], int tam) {
 	}
 	cout << endl;
 }
-
-/*
-Jogador 1 : João
-Jogador 2 : José
-----------
-*/
