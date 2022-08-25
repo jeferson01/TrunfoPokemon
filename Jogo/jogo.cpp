@@ -5,9 +5,10 @@
 #include <iomanip> // 'setw()' align columns
 #include "../Gerador/gerador_funcoes.h"
 #include "../Gerador/gerador_funcoes.cpp" // alternativa seria add gerador_funcoes.cpp ao proj Jogo.
+
 using namespace std;
 static int PontosJogador1 = 0, PontosJogador2 = 0;
-static int Seed = 19; // seed do gerador
+static int Seed = 21; // seed do gerador
 static const char* CorDef = CorDoTipo(-1);
 
 void ExibirCartasNaMao(Cartas* vetJog[], int tam);
@@ -30,7 +31,7 @@ int main() {
 	unsigned short tamNome; // tamanho do maior nome, usado para colunas setw()
 	strlen(nomeJog1) > strlen(nomeJog2) ? tamNome = strlen(nomeJog1) : tamNome = strlen(nomeJog2);
 	
-
+	const float VantagemBonus = 0.25;
 	const unsigned short comprarCartas = 7; // quantidade de cartas pra cada jogador
 	unsigned short quantCartas;
 	const char cabecalho[] = "BARALHO";
@@ -76,18 +77,18 @@ int main() {
 	}
 
 
-	for (size_t i = 0; i < 12; i++)
+	for (int i = 0; i < 12; i++)
 	{
 		cout << TipoString(i) << " -> " << TipoString(TipoString(i)) << endl;
 	}
-	for (size_t i = 0; i < 9; i++)
+	for (int i = 0; i < 9; i++)
 	{
 		cout << CorDoTipo(i) << " " << TipoString(i) << " " << CorDoTipo(-1) << " ";
 		Sleep(150);
 	}
 
 	cout << "\nIniciar nova partida ? [S / N] ";
-	char ch;
+	//char ch;
 	//while (cin >> ch && ch != 'S' && ch != 'N') // ***
 		//cout << "\nIniciar nova partida ? [S / N] ";
 	
@@ -126,8 +127,9 @@ int main() {
 		
 		bool vantagemPok1 = CompararVantagemTipo(VantagemDoTipo(cartasJogador1[i]->tipo), tipoPok2);
 		bool vantagemPok2 = CompararVantagemTipo(VantagemDoTipo(cartasJogador2[i]->tipo), tipoPok1);
+		
 		cout.setf(ios::boolalpha);
-		cout << "\n vantagem do pok1: " << vantagemPok1 << " , pok2: " << vantagemPok2 << endl;
+		cout << "\n vantagem do pok1: " << vantagemPok1 << " , pok2: " << vantagemPok2 << endl; // debug
 
 		cout << endl << "\t";
 		cout << CorDoTipo(tipoPok1) << "  " << CorDef << " " << cartasJogador1[i]->nome << " X "
@@ -172,13 +174,19 @@ int main() {
 		default: cout << "*ERRO ATRIBUTO SELECIONADO*\a"; break;
 		}
 
+		// ** definir vantagem +xx% bonus no atributo.... **
+		atribJogador1 += int(atribJogador1 * VantagemBonus * vantagemPok1);
+		atribJogador2 += int(atribJogador2 * VantagemBonus * vantagemPok2);
+		
 		cout.setf(ios::left);  const int col = 12; // tamanho da coluna, setw() para cada palavra
 
-		// ** definir vantagem +30% bonus no atributo.... **
-		cout << "\n[" << setw(tamNome) << nomeJog1 << "] " << setw(col) << cartasJogador1[i]->nome << " -> " << atribJogador1;
-		cout << " " << CorDoTipo(tipoPok1) << "  " << CorDef;
-		cout << "\n[" << setw(tamNome) << nomeJog2 << "] " << setw(col) << cartasJogador2[i]->nome << " -> " << atribJogador2;
+		cout << "\n[" << setw(tamNome) << nomeJog1 << "] " << setw(col) << cartasJogador1[i]->nome << " -> " << setw(2) << atribJogador1;
+		cout <<  " " << CorDoTipo(tipoPok1) << "  " << CorDef;
+		if (vantagemPok1) cout << " bônus +" << int(VantagemBonus * 100) << "%";
+
+		cout << "\n[" << setw(tamNome) << nomeJog2 << "] " << setw(col) << cartasJogador2[i]->nome << " -> " << setw(2) << atribJogador2;
 		cout << " " << CorDoTipo(tipoPok2) << "  " << CorDef;
+		if (vantagemPok2) cout << " bônus +" << int(VantagemBonus * 100) << "%";
 
 		cout << endl << endl;
 		cout.unsetf(ios::left);
